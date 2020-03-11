@@ -13,6 +13,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     image: postgres
+    ports:
+      - 0.0.0.0:7200:5432
 
   users-service:
     build: './users-service'
@@ -27,3 +29,5 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     image: postgres
+    ports:
+      - 0.0.0.0:7201:5432
