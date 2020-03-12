@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { Users } from '#root/db/models';
+import { User } from '#root/db/models';
 
 const usersRouter = Router();
 
