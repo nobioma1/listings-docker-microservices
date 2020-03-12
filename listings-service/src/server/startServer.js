@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import accessENV from '#root/helpers/accessENV';
+import listingsRouter from '../routes';
 
 const PORT = accessENV('PORT', 7100);
 
@@ -14,5 +15,7 @@ app.use(
     credentials: true,
   })
 );
+
+app.use('/', listingsRouter);
 
 app.listen(PORT, () => console.info(`Listings service live @ ${PORT}`));
