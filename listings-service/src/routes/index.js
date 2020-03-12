@@ -1,9 +1,12 @@
-import express from 'express';
+import { Router } from 'express';
 
-const listingsRouter = express.Router();
+import { Listing } from '#root/db/models';
 
-listingsRouter.get('/listings', (req, res) => {
-  return res.json({ message: 'Some response' });
+const listingsRouter = Router();
+
+listingsRouter.get('/listings', async (req, res) => {
+  const listings = await Listing.findAll();
+  return res.json({ listings });
 });
 
 export default listingsRouter;
