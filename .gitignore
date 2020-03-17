@@ -1,4 +1,5 @@
 listings-service/node_modules/
 users-service/node_modules/
-api-gateway/node_modules/
+api-gateway/node_modules/*
 yarn-error.log*
+package-lock.json*
