@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { compareSync } from 'bcryptjs';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import { addHours } from 'date-fns';
 
 import { User, UserSessions } from '#root/db/models';
