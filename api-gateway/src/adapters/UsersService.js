@@ -9,8 +9,7 @@ export default class UsersService {
       email,
       password,
     });
-    const user = data.user;
-    return user;
+    return data.user;
   }
 
   static async createUserSession({ email, password }) {
@@ -23,5 +22,11 @@ export default class UsersService {
     );
 
     return userSessions;
+  }
+
+  static async fetchUser({ userId }) {
+    const { data } = await axios.get(`${USERS_SERVICE_URI}/users/${userId}`);
+
+    return data.user;
   }
 }
