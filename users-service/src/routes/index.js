@@ -58,4 +58,16 @@ usersRouter.post('/sessions', async (req, res, next) => {
   }
 });
 
+usersRouter.get('/users/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId);
+
+    if (!user) return next(new ErrorHandler('User with ID Not Found', 404));
+
+    return res.status(200).json({ user });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default usersRouter;
