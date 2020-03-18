@@ -9,6 +9,18 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
+const mutation = gql`
+  mutation($email: String!, $password: String!) {
+    createUserSession(email: $email, password: $password) {
+      id
+      user {
+        id
+        email
+      }
+    }
+  }
+`;
+
 const Login = () => {
   const [fields, setFields] = useState({
     email: '',
