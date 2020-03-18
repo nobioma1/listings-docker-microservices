@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 
 import Input from '../shared/Input';
 import Button from '../shared/Button';
@@ -27,6 +29,7 @@ const Login = () => {
     password: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [createUserSession] = useMutation(mutation);
 
   const onChangeHandler = event => {
     const target = event.target;
@@ -36,10 +39,16 @@ const Login = () => {
     }));
   };
 
-  const onSubmitHandler = event => {
+  const onSubmitHandler = async event => {
     event.preventDefault();
     setIsSubmitting(true);
+    const result = await createUserSession({
+      variables: {
+        ...fields,
+      },
+    });
     setIsSubmitting(false);
+    console.log(result);
   };
 
   return (
