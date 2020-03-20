@@ -70,4 +70,18 @@ usersRouter.get('/users/:userId', async (req, res, next) => {
   }
 });
 
+usersRouter.get('/sessions/:sessionId', async (req, res, next) => {
+  try {
+    const session = await UserSessions.findByPk(req.params.sessionId);
+
+    if (!session) {
+      return next(new ErrorHandler('Session with ID Not Found', 404));
+    }
+
+    return res.status(200).json({ session });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default usersRouter;
