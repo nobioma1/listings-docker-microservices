@@ -9,10 +9,6 @@ const typeDefs = gql`
     description: String!
   }
 
-  type Query {
-    listings: [Listings!]!
-  }
-
   type User {
     id: ID!
     name: String!
@@ -29,6 +25,11 @@ const typeDefs = gql`
   type Mutation {
     createUser(name: String!, email: String!, password: String!): User!
     createUserSession(email: String!, password: String!): UserSession!
+  }
+
+  type Query {
+    listings: [Listings!]!
+    userSession(me: Boolean): UserSession
   }
 `;
 
