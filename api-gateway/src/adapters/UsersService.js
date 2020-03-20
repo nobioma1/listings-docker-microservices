@@ -29,4 +29,12 @@ export default class UsersService {
 
     return data.user;
   }
+
+  static async fetchUserSession({ userSessionId }) {
+    const { data } = await axios.get(
+      `${USERS_SERVICE_URI}/sessions/${userSessionId}`
+    );
+
+    return data.session;
+  }
 }
