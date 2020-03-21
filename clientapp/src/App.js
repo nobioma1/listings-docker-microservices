@@ -52,7 +52,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Main />
+      <Main initialized={initialized} />
     </ThemeProvider>
   );
 };

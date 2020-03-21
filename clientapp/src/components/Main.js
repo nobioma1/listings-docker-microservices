@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Login from './Login';
+import Account from './Account';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -26,14 +27,12 @@ const Sidebar = styled.div`
   width: 20rem;
 `;
 
-const Main = () => {
+const Main = ({ initialized }) => {
   return (
     <Wrapper>
       <Container>
         <Content>This is Content</Content>
-        <Sidebar>
-          <Login />
-        </Sidebar>
+        <Sidebar>{initialized ? <Account /> : <Login />}</Sidebar>
       </Container>
     </Wrapper>
   );
