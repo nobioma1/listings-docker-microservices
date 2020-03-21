@@ -84,4 +84,20 @@ usersRouter.get('/sessions/:sessionId', async (req, res, next) => {
   }
 });
 
+usersRouter.delete('/sessions/:sessionId', async (req, res, next) => {
+  try {
+    const session = await UserSessions.findByPk(req.params.sessionId);
+
+    if (!session) {
+      return next(new ErrorHandler('Session with ID Not Found', 404));
+    }
+
+    await session.destroy();
+
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default usersRouter;
