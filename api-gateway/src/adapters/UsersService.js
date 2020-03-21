@@ -37,4 +37,12 @@ export default class UsersService {
 
     return data.session;
   }
+
+  static async deleteUserSession({ userSessionId }) {
+    const { data } = await axios.delete(
+      `${USERS_SERVICE_URI}/sessions/${userSessionId}`
+    );
+
+    return data;
+  }
 }
