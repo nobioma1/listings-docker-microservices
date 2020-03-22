@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import gql from 'graphql-tag';
+import { useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 
-import Input from '../shared/Input';
-import Button from '../shared/Button';
+import { Input, Button } from '../shared';
+import { setSession } from '../../store/actions/sessions';
 
 const Form = styled.form`
   display: flex;
@@ -17,6 +18,7 @@ const mutation = gql`
       id
       user {
         id
+        name
         email
       }
     }
@@ -28,6 +30,7 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createUserSession] = useMutation(mutation);
 
@@ -42,13 +45,13 @@ const Login = () => {
   const onSubmitHandler = async event => {
     event.preventDefault();
     setIsSubmitting(true);
-    const result = await createUserSession({
+    const { data } = await createUserSession({
       variables: {
         ...fields,
       },
     });
     setIsSubmitting(false);
-    console.log(result);
+    dispatch(setSession(data.createUserSession));
   };
 
   return (
