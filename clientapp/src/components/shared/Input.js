@@ -13,11 +13,11 @@ const InputField = styled(Field)`
   margin: 0.3rem 0;
 `;
 
-const Input = ({ name, type, errors, touched }) => {
+const Input = ({ name, errors, touched, ...rest }) => {
   return (
     <Label>
       {name}
-      <InputField name={name} type={type} />
+      <InputField name={name} {...rest} />
       {errors[name] && touched[name] ? <div>{errors[name]}</div> : null}
     </Label>
   );
