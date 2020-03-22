@@ -16,9 +16,9 @@ app.use(
   })
 );
 
-app.use('/', usersRouter);
+app.use('/users', usersRouter);
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(err.status || 500);
   return res.json({
     message: err.message,

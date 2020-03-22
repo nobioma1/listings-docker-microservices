@@ -14,7 +14,7 @@ export default class UsersService {
 
   static async createUserSession({ email, password }) {
     const { data: userSessions } = await axios.post(
-      `${USERS_SERVICE_URI}/sessions`,
+      `${USERS_SERVICE_URI}/users/sessions`,
       {
         email,
         password,
@@ -32,7 +32,7 @@ export default class UsersService {
 
   static async fetchUserSession({ userSessionId }) {
     const { data } = await axios.get(
-      `${USERS_SERVICE_URI}/sessions/${userSessionId}`
+      `${USERS_SERVICE_URI}/users/sessions/${userSessionId}`
     );
 
     return data.session;
@@ -40,7 +40,7 @@ export default class UsersService {
 
   static async deleteUserSession({ userSessionId }) {
     const { data } = await axios.delete(
-      `${USERS_SERVICE_URI}/sessions/${userSessionId}`
+      `${USERS_SERVICE_URI}/users/sessions/${userSessionId}`
     );
 
     return data;

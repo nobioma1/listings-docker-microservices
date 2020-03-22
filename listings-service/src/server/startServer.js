@@ -16,6 +16,6 @@ app.use(
   })
 );
 
-app.use('/', listingsRouter);
+app.use('/listings', listingsRouter);
 
 app.listen(PORT, () => console.info(`Listings service live @ ${PORT}`));

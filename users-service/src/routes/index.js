@@ -8,7 +8,7 @@ import ErrorHandler from '#root/helpers/ErrorHandler';
 
 const usersRouter = Router();
 
-usersRouter.post('/users', async (req, res, next) => {
+usersRouter.post('/', async (req, res, next) => {
   if (!req.body.name && !req.body.email && !req.body.password) {
     return next(
       new ErrorHandler("Fields 'name', 'email', and 'password' are required")
@@ -58,7 +58,7 @@ usersRouter.post('/sessions', async (req, res, next) => {
   }
 });
 
-usersRouter.get('/users/:userId', async (req, res, next) => {
+usersRouter.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
 
