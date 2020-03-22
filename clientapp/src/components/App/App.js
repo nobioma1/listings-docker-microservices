@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Account from '../Account';
 import Auth from '../Auth';
 import graphqlClient from '../../api/graphqlClient';
+import Listings from '../Listings';
 import { setSession } from '../../store/actions/sessions';
 import * as theme from '../../theme';
 
@@ -79,7 +80,9 @@ const App = () => {
       <GlobalStyle />
       <Wrapper>
         <Container>
-          <Content>This is Content</Content>
+          <Content>
+            <Listings />
+          </Content>
           <Sidebar>{session ? <Account /> : <Auth />}</Sidebar>
         </Container>
       </Wrapper>
