@@ -8,4 +8,13 @@ export default class ListingsService {
     const listings = data.listings;
     return listings;
   }
+
+  static async addListing(listing) {
+    const { data } = await axios.post(
+      `${LISTINGS_SERVICE_URI}/listings`,
+      listing
+    );
+    const newListing = data.listing;
+    return newListing;
+  }
 }
