@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Account from '../Account';
+import Auth from '../Auth';
 import graphqlClient from '../../api/graphqlClient';
-import Login from '../Login';
 import { setSession } from '../../store/actions/sessions';
 import * as theme from '../../theme';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-
   html, body, #app {
     height: 100%;
     width: 100%;
@@ -63,13 +61,17 @@ const query = gql`
 const App = () => {
   const dispatch = useDispatch();
   const session = useSelector(({ session }) => session);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    graphqlClient.query({ query }).then(({ data }) => {
-      if (data.userSession) {
-        dispatch(setSession(data.userSession));
-      }
-    });
+    graphqlClient
+      .query({ query })
+      .then(({ data }) => {
+        if (data.userSession) {
+          dispatch(setSession(data.userSession));
+        }
+      })
+      .catch(console.error);
   }, [dispatch]);
 
   return (
@@ -78,7 +80,7 @@ const App = () => {
       <Wrapper>
         <Container>
           <Content>This is Content</Content>
-          <Sidebar>{session ? <Account /> : <Login />}</Sidebar>
+          <Sidebar>{session ? <Account /> : <Auth />}</Sidebar>
         </Container>
       </Wrapper>
     </ThemeProvider>

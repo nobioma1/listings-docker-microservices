@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field } from 'formik';
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -7,16 +8,17 @@ const Label = styled.label`
   margin: 0.5rem 0;
 `;
 
-const InputField = styled.input`
+const InputField = styled(Field)`
   padding: 0.5rem;
   margin: 0.3rem 0;
 `;
 
-const Input = props => {
+const Input = ({ name, type, errors, touched }) => {
   return (
     <Label>
-      {props.name}
-      <InputField {...props} />
+      {name}
+      <InputField name={name} type={type} />
+      {errors[name] && touched[name] ? <div>{errors[name]}</div> : null}
     </Label>
   );
 };
